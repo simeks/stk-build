@@ -38,7 +38,7 @@ build_script:
 deploy:
   provider: GitHub
   auth_token:
-    secure: CUUoJsg4ti4ilv5xaRgBHyZt3yyMNfMVP2zm50x/Rs3EgBBwmCu7eggMzkLH3A/Z
+    secure: UPS97Wi5xAZvg/FMD37ync8GzAwsqJXRBiU6AeE0fvilNfAJ9CL35Y4FsNRWfYvo
   artifact: stk\dist\*.whl
   force_update: true
   on:
