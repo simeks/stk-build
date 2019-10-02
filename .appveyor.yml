@@ -15,7 +15,7 @@ matrix:
 environment:
     global:
       # Remember to edit .travis.yml too
-      BUILD_COMMIT: v0.4.1
+      BUILD_COMMIT: development
 
     matrix:
     - PYTHON: C:\Python37-x64

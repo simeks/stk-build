@@ -1,7 +1,7 @@
 env:
   global:
   - REPO_DIR=stk
-  - BUILD_COMMIT=python
+  - BUILD_COMMIT=development
   - BUILD_DEPENDS="numpy"
   - TEST_DEPENDS="numpy"
   - PLAT=x86_64
