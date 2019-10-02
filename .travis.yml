@@ -1,0 +1,61 @@
+env:
+  global:
+  - REPO_DIR=stk
+  - BUILD_COMMIT=development
+  - BUILD_DEPENDS="numpy PyYAML SimpleITK"
+  - TEST_DEPENDS="numpy PyYAML SimpleITK"
+  - PLAT=x86_64
+
+language: python
+python: 3.7
+services: docker
+dist: xenial
+matrix:
+  include:
+  - os: linux
+    env:
+    - MB_PYTHON_VERSION=3.4
+  - os: linux
+    env:
+    - MB_PYTHON_VERSION=3.5
+  - os: linux
+    env:
+    - MB_PYTHON_VERSION=3.6
+  - os: linux
+    env:
+    - MB_PYTHON_VERSION=3.7
+  - os: osx
+    language: generic
+    env:
+    - MB_PYTHON_VERSION=3.5
+  - os: osx
+    language: generic
+    env:
+    - MB_PYTHON_VERSION=3.6
+  - os: osx
+    language: generic
+    env:
+    - MB_PYTHON_VERSION=3.7
+    - MB_PYTHON_OSX_VER=10.9
+
+before_install:
+- python --version
+- source multibuild/common_utils.sh
+- source multibuild/travis_steps.sh
+- before_install
+
+script:
+- clean_code $REPO_DIR $BUILD_COMMIT
+- build_wheel $REPO_DIR $PLAT
+- cd $REPO_DIR
+
+deploy:
+  provider: releases
+  api_key:
+    secure: TKfMw2KoqXcCtvArQhfsDQU1zBegM7l7hYCedfJ1Gnlgy1du6ZIdKD1ZpiWl5fMACX+iTd7+ZhMM+FVZe+k6itFTlS0q8wbL4chXWWoZ5BKTUmvWvKZZHdjuR6md6DAvmYZb/EP/44GUdSNoE79jfZc3ITqItwkJYODuQhcsfJMrow4qsFvBxTa9/YFIRJ8sljmCsV+/+Mv90Y7vdM6PTtvsgReiRbIUvp+yycQ0/9TT7Et8I/B7XG/IqzUc5nd/e3kf/8udFfPrWsruOLXlLYTVbDKCxLUy1+b9T3GPmc3cSLiPtW/Kj8pScGinvpz2a3vEgn28lzDV9OvYSgdn/PewbYbpC1tORcumjyjjbhQqnEejo3rpiMyqU2UVZu0LBvxdpw07gxDx0zLWaLsLm55AMQCJced1GLpr/242md7R5JcJvJRkUm1IQc+WbtfCAym2VufGiB0a+ahy+wKkofCUOzZxSKitBPvK1v4DCG0BWq/v5KoXA2jyafC4fKt44kaMOux6oxSlC1hOQIOUJ2YMzLFznAbZzjsmmecT1IRTdDzs0Ji0elW+nOsFGLZd6Hng/z7XI7hh5S+ZByGMP4LYZoF1MHpbc2XSnB8FCfsQ9eY5sxCFZNxKt9O6IlEJHeOwHMQbmCv1JrClWN6T8ulmq9nduDZZq4pTpMpIyOc=
+  file_glob: true
+  file: "${TRAVIS_BUILD_DIR}/wheelhouse/python-stk-*.whl"
+  skip_cleanup: true
+  on:
+    repo: simeks/stk-build
+    tags: true

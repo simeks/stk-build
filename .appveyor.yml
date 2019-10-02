@@ -1,0 +1,44 @@
+image:
+- Visual Studio 2017
+
+platform:
+- x64
+
+build:
+  parallel: true
+  verbosity: minimal
+
+matrix:
+  fast_finish: true
+
+
+environment:
+    global:
+      # Remember to edit .travis.yml too
+      BUILD_COMMIT: v0.4.1
+
+    matrix:
+    - PYTHON: C:\Python37-x64
+    - PYTHON: C:\Python36-x64
+    - PYTHON: C:\Python35-x64
+
+install:
+  - git submodule update --init --recursive
+  - set PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%
+  - python -m pip install --upgrade pip
+  - pip install wheel
+
+build_script:
+  - cd stk
+  - git checkout %BUILD_COMMIT%
+  - python setup.py bdist_wheel -DCMAKE_GENERATOR_PLATFORM=%PLATFORM%
+  - dir dist
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: CUUoJsg4ti4ilv5xaRgBHyZt3yyMNfMVP2zm50x/Rs3EgBBwmCu7eggMzkLH3A/Z
+  artifact: stk\dist\*.whl
+  force_update: true
+  on:
+    APPVEYOR_REPO_TAG: true
