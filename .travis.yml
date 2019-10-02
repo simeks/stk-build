@@ -54,7 +54,7 @@ deploy:
   api_key:
     secure: j9bGAyEOH4JX/dQYOyiVNz0KL7fYP3ujXlgTMe6sO1wYZrhMnC9FO4qbT9GfD0jKz+1YNLMgDn2o0N5Tx9d+G5j+3YAaP7Q8zgznjQZNgrPdXnnsi27pl+UiTAQ82VER7xXD9jMDP51Z8kd3LIXxMTNLJOmp+GcQeMMX1eziKrkR4TWxTYz6SVv/jdvlCGzUiinVIAYSWznYWXR9OYAZxDQ01YIhjuWskDKqz4C8MSzc/5wAgdAuiTLaE9PeVysC+3GpSDu1lFzr2qg8pVOry8RIPXUBWL2ihyHy4sFsbvsARSO9e9ab3jbXq/7l+PjO9GBLQnwezZgkGOKSIlqRt61oni4WRkUPm1JMIpOvS2CdVqj3YfYeDYI4KrVArkZJ36gkO5Gd1Pa46PoK5mn0/vcxdqkSJaLfo+W1PZOqyltDKfkLQ94VCeMjPLBvlsNWNmFprPXKavaQWJc6M9bWN9I9JkU1XQEv1LbdhajZLGDSX5HTXMYRgp6tmSluSzogXLEgbZKTjlcbBtgO/9D5PkqTMZOLza9OOjx8UOnTGoD4F1Jb4mAIwdiOP5+aeF4LbLAFdA/DSfL03xyImN6IRlgXsepZtIhA2x7WIoxEzeg/qK6SInwDMS/5dtznLNQck2fZJ/byqjLircHH5aW17VXUmQgEm1TXYKZ43QGhldo=
   file_glob: true
-  file: "${TRAVIS_BUILD_DIR}/wheelhouse/python-stk-*.whl"
+  file: "${TRAVIS_BUILD_DIR}/wheelhouse/python_stk-*.whl"
   skip_cleanup: true
   on:
     repo: simeks/stk-build
