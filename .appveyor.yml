@@ -31,6 +31,7 @@ install:
 build_script:
   - cd stk
   - git checkout %BUILD_COMMIT%
+  - git submodule update --init --recursive
   - python setup.py bdist_wheel -DCMAKE_GENERATOR_PLATFORM=%PLATFORM%
   - dir dist
 
