@@ -39,7 +39,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: UPS97Wi5xAZvg/FMD37ync8GzAwsqJXRBiU6AeE0fvilNfAJ9CL35Y4FsNRWfYvo
-  artifact: stk\dist\*.whl
+  artifact: /stk\\dist\\.*\.whl/
   force_update: true
   on:
     APPVEYOR_REPO_TAG: true
