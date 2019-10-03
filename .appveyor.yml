@@ -35,11 +35,15 @@ build_script:
   - python setup.py bdist_wheel -DCMAKE_GENERATOR_PLATFORM=%PLATFORM%
   - dir dist
 
+artifacts:
+  - path: stk\dist\*.whl
+    name: wheel
+
 deploy:
   provider: GitHub
   auth_token:
     secure: UPS97Wi5xAZvg/FMD37ync8GzAwsqJXRBiU6AeE0fvilNfAJ9CL35Y4FsNRWfYvo
-  artifact: stk\\dist\\*.\.whl
+  artifact: wheel
   force_update: true
   on:
     APPVEYOR_REPO_TAG: true
